@@ -15,21 +15,28 @@ public class actividad1 {
 
   public static void main(String args[]) {
 
-    String [] validos = new String [] { "1", "3,14", "1.000", "-5", " - 4,6 ", " 5.000,8", " 500 ", "+2 " } ;
+    String [] validos = new String [] { "1", "3,14", "1.000", "-5", " - 4,6 ", " 5.000,8", " 500 ", "+2 "} ;
 
-    String [] invalidos = new String [] {"abcdef","  123abc", "123abc", "<>9io", "+", "1125,54.125",
+    String [] invalidos = new String [] {"abcdef","  123abc", "123abc", "<>9io", "+", "1125,54.125", "125..300",
             "+-10", "10.","67 89","", "123.13,05", "eˆ2", " 3, " , "252,12,12", "123.13,05.36", "125,5.2"};
 
+    Boolean res;
     System.out.println("\nValidos: =>" +  validos.length);
 
-      for (String str : validos) {
-      System.out.println( "El resultado de parsear la entrada valida: '" + str + "' es => " + Parser.parsear(str));
+    for (String str : validos)
+    {
+      res = Parser.parsear(str);
+      System.out.println( "El resultado de parsear la entrada valida: '" + str + "' es => " + res);
+      if (!res) throw new AssertionError("Error al parsear: " + str);
     }
 
     System.out.println("\n\nInvalidos=>" +  invalidos.length);
 
-      for (String str : invalidos) {
-      System.out.println("El resultado de parsear la entrada invalida: '" + str + "' es => " + Parser.parsear(str));
+    for (String str : invalidos)
+    {
+      res = Parser.parsear(str);
+      System.out.println("El resultado de parsear la entrada invalida: '" + str + "' es => " + res);
+      if (res) throw new AssertionError("Error al parsear: " + str);
     }
 
   }
@@ -83,8 +90,9 @@ public class actividad1 {
             break;
 
           case '.':
-            flagPunto = true;
-            flagComa = false;
+            if (flagPunto) {
+              hayError = true;
+            }
 
             if (flagDecimalPart) {
                hayError = true;
@@ -95,6 +103,10 @@ public class actividad1 {
             } else {
               hayError = true;
             }
+
+            flagPunto = true;
+            flagComa = false;
+
             break;
 
           case ',':
