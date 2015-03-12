@@ -18,7 +18,8 @@ public class actividad1 {
     String [] validos = new String [] { "1", "3,14", "1.000", "-5", " - 4,6 ", " 5.000,8", " 500 ", "+2 "} ;
 
     String [] invalidos = new String [] {"abcdef","  123abc", "123abc", "<>9io", "+", "1125,54.125", "125..300",
-            "+-10", "10.","67 89","", "123.13,05", "eˆ2", " 3, " , "252,12,12", "123.13,05.36", "125,5.2"};
+            "+-10", "10.", "67 89", "", "123.13,05", "eˆ2", " 3, ", "252,12,12", "123.13,05.36", "125,5.2",
+            "164.445.843.7899", "22222.222"};
 
     Boolean res;
     System.out.println("\nValidos: =>" +  validos.length);
@@ -47,94 +48,101 @@ public class actividad1 {
       char car;
       char[] caracteres = entrada.toCharArray();
       int largo = entrada.length();
-      int i = 0;
-      int contador = 0;
-      Boolean flagSigno = false, flagNumero = false, flagPunto = false, flagComa = false,
-              finalizo = false, hayError = false, flagDecimalPart=false;
+        int iterador = 0, sepMilesCout = 0, numCount = 0;
 
-      while (!hayError && i < largo) {
+        Boolean bSign = false, bNumber = false, bDot = false, bColon = false, bCantHaveDot = false,
+                bFinished = false, bIsError = false, bDecimalPart = false, bContainsDot = false;
 
-        car = caracteres[i];
+        while (!bIsError && iterador < largo) {
+
+            car = caracteres[iterador];
         switch (car) {
 
           case ' ':
-            if (flagNumero) {
-              finalizo = true;
+              if (bNumber) {
+                  bFinished = true;
             }
             break;
 
           case '+' : case '-':
 
-            if (!finalizo) {
-              if (flagSigno || flagNumero) {
-                hayError = true;
+                if (!bFinished) {
+                    if (bSign || bNumber) {
+                        bIsError = true;
               }
               else {
-                flagSigno = true;
+                        bSign = true;
               }
             } else {
-              hayError = true;
+                    bIsError = true;
             }
             break;
 
           case '0' : case '1': case '2': case '3' : case '4' : case '5' : case '6' : case '7': case '8': case '9':
-            flagNumero = true;
-            flagPunto = false;
-            flagComa = false;
+                bNumber = true;
+                bDot = false;
+                bColon = false;
 
-            if (!finalizo) {
-              if (contador > 0) contador--;
+                if (!bDecimalPart) {
+                    numCount++;
+                }
+
+                if (numCount == 4 && !bContainsDot) {
+                    bCantHaveDot = true;
+                }
+
+                if (!bFinished) {
+                    if (bContainsDot && !bDecimalPart)
+                        sepMilesCout--;
             } else {
-              hayError = true;
+                    bIsError = true;
             }
             break;
 
           case '.':
-            if (flagPunto) {
-              hayError = true;
+              bContainsDot = true;
+
+              if (bDot || bCantHaveDot || bDecimalPart) {
+                  bIsError = true;
             }
 
-            if (flagDecimalPart) {
-               hayError = true;
-            }
-
-            if (!finalizo) {
-                contador = 3;
+              if (!bFinished) {
+                  sepMilesCout = 3;
             } else {
-              hayError = true;
+                  bIsError = true;
             }
 
-            flagPunto = true;
-            flagComa = false;
+              bDot = true;
+              bColon = false;
 
             break;
 
           case ',':
 
-            flagComa = true;
-            flagPunto = false;
+              bColon = true;
+              bDot = false;
 
-            if (!flagDecimalPart) {
-                flagDecimalPart = true;
+              if (!bDecimalPart) {
+                  bDecimalPart = true;
             } else {
-                hayError = true;
+                  bIsError = true;
             }
 
-            if (contador != 0) {
-                hayError = true;
+              if (sepMilesCout != 0) {
+                  bIsError = true;
             }
             break;
 
           default:
-            hayError = true;
+              bIsError = true;
         }
 
-        if (i == largo-1 && flagNumero)
-          finalizo=true;
-        i++;
+            if (iterador == largo - 1 && bNumber)
+                bFinished = true;
+            iterador++;
       }
 
-      return finalizo && !hayError && !flagPunto && !flagComa && contador==0 ;
+        return bFinished && !bIsError && !bDot && !bColon && sepMilesCout == 0;
     }
   }
 
