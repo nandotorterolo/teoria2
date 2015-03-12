@@ -15,7 +15,7 @@ public class actividad1 {
 
   public static void main(String args[]) {
 
-    String [] validos = new String [] { "1", "3,14", "1.000", "-5", " - 4,6 ", " 5.000,8", " 500 ", "+2 "} ;
+    String [] validos = new String [] { "123.456","1", "3,14", "1.000", "-5", " - 4,6 ", " 5.000,8", " 500 ", "+2 "} ;
 
     String [] invalidos = new String [] {"abcdef","  123abc", "123abc", "<>9io", "+", "1125,54.125", "125..300",
             "+-10", "10.", "67 89", "", "123.13,05", "eˆ2", " 3, ", "252,12,12", "123.13,05.36", "125,5.2",
