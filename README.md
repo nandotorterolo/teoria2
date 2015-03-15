@@ -10,3 +10,8 @@
  espacios al antes y despues del signo y de la entrada, debe verificar una entrada valida o no.
 
  
+### Framework utilizados
+ 
+ JUnit is a Regression Testing Framework used by developers to implement unit testing in Java.
+ 
+ http://www.tutorialspoint.com/junit/junit_test_framework.htm
