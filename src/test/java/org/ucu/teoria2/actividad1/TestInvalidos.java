@@ -1,6 +1,7 @@
 package org.ucu.teoria2.actividad1;
 
 import junit.framework.TestCase;
+import org.ucu.utils.ReadStringFromFileLineByLine;
 
 /**
  * Creado el dia 15/03/15,
@@ -13,10 +14,7 @@ public class TestInvalidos extends TestCase {
   boolean res;
 
   protected void setUp(){
-    invalidos =new String [] {"abcdef","  123abc", "123abc", "<>9io", "+", "1125,54.125", "125..300",
-            "+-10", "10.", "67 89", "", "123.13,05", "eˆ2", " 3, ", "252,12,12", "123.13,05.36", "125,5.2",
-            "164.445.843.7899", "22222.222"};
-
+    invalidos = ReadStringFromFileLineByLine.read("CadenasInvalidas.txt");
   }
 
   public void testCases() {
