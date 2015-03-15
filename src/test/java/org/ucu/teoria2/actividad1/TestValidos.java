@@ -1,6 +1,7 @@
 package org.ucu.teoria2.actividad1;
 
 import junit.framework.TestCase;
+import org.ucu.utils.ReadStringFromFileLineByLine;
 
 /**
  * Creado el dia 15/03/15,
@@ -13,7 +14,7 @@ public class TestValidos extends TestCase {
   boolean res;
 
   protected void setUp(){
-    validos = new String [] { "123.456","1", "3,14", "1.000", "-5", " - 4,6 ", " 5.000,8", " 500 ", "+2 "} ;
+    validos = ReadStringFromFileLineByLine.read("CadenasValidas.txt");
   }
 
   public void testCases() {
