@@ -18,7 +18,7 @@ public class ParserNumeros {
     int largo = entrada.length();
     int iterador = 0, sepMilesCout = 0, numCount = 0;
 
-    Boolean bSign = false, bNumber = false, bDot = false, bColon = false, bCantHaveDot = false,
+      boolean bSign = false, bNumber = false, bDot = false, bColon = false, bCantHaveDot = false,
             bFinished = false, bIsError = false, bDecimalPart = false, bContainsDot = false;
 
     while (!bIsError && iterador < largo) {

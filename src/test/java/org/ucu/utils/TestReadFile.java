@@ -13,12 +13,7 @@ public class TestReadFile extends TestCase {
 
     boolean res = false;
     try {
-      String[] lineas = ReadStringFromFileLineByLine.read("CadenasValidas.txt");
-
-      for (String linea : lineas) {
-        System.out.println(linea);
-      }
-
+        ReadStringFromFileLineByLine.read("CadenasValidas.txt");
       res = true;
     } catch (IllegalStateException e) {
       e.printStackTrace();

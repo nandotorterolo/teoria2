@@ -3,15 +3,16 @@ package org.ucu.teoria2.actividad1;
 import junit.framework.TestCase;
 import org.ucu.utils.ReadStringFromFileLineByLine;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
 /**
  * Creado el dia 15/03/15,
  * Integrantes: Fernando Torterolo.
  */
 public class TestInvalidos extends TestCase {
 
-
   String [] invalidos;
-  boolean res;
 
   protected void setUp(){
     invalidos = ReadStringFromFileLineByLine.read("CadenasInvalidas.txt");
@@ -20,9 +21,7 @@ public class TestInvalidos extends TestCase {
   public void testCases() {
     for (String str : invalidos)
     {
-      res = ParserNumeros.parsear(str);
-      System.out.println( "El resultado de parsear la entrada valida: '" + str + "' es => " + res);
-      assertFalse(res);
+        assertThat("El resultado de parsear la entrada valida: '" + str, ParserNumeros.parsear(str), is(false));
     }
   }
 
