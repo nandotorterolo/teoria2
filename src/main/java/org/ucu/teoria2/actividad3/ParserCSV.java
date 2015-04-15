@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Teorca de la Computación y sistemas formales.
+ * Teoria de la Computación y sistemas formales.
  * Actividad 3, Ejercicio 1
  * Grupo 6 - Pancreas.
  * 14/3/2015
@@ -18,6 +18,7 @@ public class ParserCSV {
 
     public static String[] parse(String csvLine) {
 
+
         final Pattern csvPattern = Pattern.compile("(?:(?<=\")([^\"]*)(?=\"))|(?<=,|^)([^,]*)(?=,|$)");
         ArrayList<String> allMatches = new ArrayList<String>();
         Matcher matcher = csvPattern.matcher(csvLine);
@@ -28,9 +29,9 @@ public class ParserCSV {
         while (matcher.find()) {
             match = matcher.group(1);
             if (match != null) {
-                allMatches.add(match);
+                allMatches.add(match.replace("\"\"", "\"" ));
             } else {
-                allMatches.add(matcher.group(2));
+                allMatches.add(matcher.group(2).replace("\"\"", "\"" ));
             }
         }
 

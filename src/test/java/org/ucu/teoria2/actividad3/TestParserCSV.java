@@ -11,7 +11,7 @@ public class TestParserCSV extends TestCase {
     String[] lineas;
 
     protected void setUp() {
-        lineas = ReadStringFromFileLineByLine.read("sampleCSV.csv");
+        lineas = ReadStringFromFileLineByLine.read("sampleCSV2.csv" );
     }
 
     public void testCases() {
