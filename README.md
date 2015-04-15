@@ -9,6 +9,12 @@
  Descripcion: Dado una entrada de un numero en base 10, que puede contener signo, decimales y separador de miles,
  espacios al antes y despues del signo y de la entrada, debe verificar una entrada valida o no.
 
+### Actividad 3, 15/4/2015
+
+ Parser SCV
+
+
+ 
  
 ### Framework utilizados
  
